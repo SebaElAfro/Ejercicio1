@@ -10,12 +10,14 @@ import com.spring.ejercicio1.entidades.Libro;
 import com.spring.ejercicio1.repositorios.AutorRepositorio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author silvia
  */
+@Service
 public class AutorService {
     @Autowired
     private LibroService ls;
@@ -34,22 +36,25 @@ public class AutorService {
         return repositorio.findAll();
     }
     
-    public void modificarAutor(String id, String nombre, Boolean alta){
+    @Transactional
+    public void modificarAutor(Integer id, String nombre, Boolean alta){
         repositorio.modificarAutor(id, nombre, alta);
     }
     
-    public void altaAutor(String id){
+    @Transactional
+    public void altaAutor(Integer id){
         Autor autor = repositorio.findById(id).get();
         repositorio.modificarAutor(id, autor.getNombre(),true);
     }
     
-    public void bajaAutor(String id){
+    @Transactional
+    public void bajaAutor(Integer id){
         Autor autor = repositorio.findById(id).get();
         repositorio.modificarAutor(id, autor.getNombre(),false);
         List<Libro> libros =ls.obtenerLibros();
         for (Libro libro : libros) {
-            if (libro.getAutor().getId().equals(id)) {
-                ls.bajaLibro(libro.getId());
+            if (libro.getAutor().getId()==id) {
+                ls.baja(libro.getId());
             }
         }
     }

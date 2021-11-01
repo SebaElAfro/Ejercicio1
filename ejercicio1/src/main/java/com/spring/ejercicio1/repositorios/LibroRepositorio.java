@@ -19,18 +19,12 @@ import org.springframework.stereotype.Repository;
  * @author silvia
  */
 @Repository
-public interface LibroRepositorio extends JpaRepository<Libro, String>{
-    
-    
-    
-    
-    
-    
-    @Modifying
-    @Query("UPDATE Libro l set l.isbn =:isbn, l.titulo = :titulo, l.anio= :anio, l.ejemplares= :ejemplares,"
-            + "l.ejemplaresPrestados= :ejemplaresPrestados, l.ejemplaresRestantes= :ejemplares - :ejemplaresPrestados,"
-            + "l.alta= alta,l.autor= :autor, l.editorial=editorial where l.id= :id ")
-    void modificar(@Param("id") String id, @Param("isbn") Long isbn, @Param("titulo") String titulo,@Param("anio") Integer anio,
-            @Param("ejemplares") Integer ejemplares,@Param("ejemplaresPrestados") Integer ejemplaresPrestados, 
-            @Param("alta") Boolean alta, @Param("autor") Autor autor, @Param("editorial") Editorial editorial);
+public interface LibroRepositorio extends JpaRepository<Libro, Integer>{
+//    @Modifying
+//    @Query("UPDATE Libro l set l.isbn =:isbn, l.titulo = :titulo, l.anio= :anio, l.ejemplares= :ejemplares,"
+//            + "l.ejemplaresPrestados= :ejemplaresPrestados, l.ejemplaresRestantes= :ejemplares - :ejemplaresPrestados,"
+//            + "l.alta= alta,l.autor= :autor, l.editorial=editorial where l.id= :id ")
+//    void modificar(@Param("id") String id, @Param("isbn") Long isbn, @Param("titulo") String titulo,@Param("anio") Integer anio,
+//            @Param("ejemplares") Integer ejemplares,@Param("ejemplaresPrestados") Integer ejemplaresPrestados, 
+//            @Param("alta") Boolean alta, @Param("autor") Autor autor, @Param("editorial") Editorial editorial);
 }

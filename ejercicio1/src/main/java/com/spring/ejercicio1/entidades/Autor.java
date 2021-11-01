@@ -14,7 +14,7 @@ import javax.persistence.Id;
 public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Integer id;
     private String nombre;
     private Boolean alta;
 
@@ -26,11 +26,11 @@ public class Autor {
         this.alta = alta;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

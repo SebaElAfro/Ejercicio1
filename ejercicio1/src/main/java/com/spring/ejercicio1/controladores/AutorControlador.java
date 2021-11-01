@@ -11,20 +11,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 /**
  *
  * @author silvia
  */
 @Controller
-@RequestMapping("/autor")
+@RequestMapping("/autorMenu")
 public class AutorControlador {
     
     @Autowired
     private AutorService as;
     
+    @GetMapping()
+    public ModelAndView menuAutores(){
+        return new ModelAndView("autorMenu");
+    }
     @GetMapping("/todos")
     public ModelAndView mostrarAutores(){
         ModelAndView mav = new ModelAndView("autorTodos");
@@ -33,9 +40,46 @@ public class AutorControlador {
         return mav;
     }
     
-//    @GetMapping("/crearAutor")
-//    public ModelAndView ingresarAutor(){
-//        ModelAndView mav = new ModelAndView("ingresarAutor");
-//        
-//    }
+    @GetMapping("/ingresar")
+    public ModelAndView ingresarAutor(){
+        ModelAndView mav = new ModelAndView("ingresarAutor");
+        
+        return mav;
+    }
+    
+    @PostMapping("/guardar")
+    public RedirectView guardar(@RequestParam String nombre){
+        as.crearAutor(nombre);
+        return new RedirectView("/autorMenu");
+    }
+    
+    @GetMapping("/altaBaja")
+    public ModelAndView altaBajaAutor(){
+         ModelAndView mv = new ModelAndView("altaBajaAutor");
+         return mv;
+    }
+    
+    @PostMapping("/alta")
+    public RedirectView altaAutor(@RequestParam Integer id){
+        as.altaAutor(id);
+        return new RedirectView("/autorMenu");
+    }
+    
+    @PostMapping("/baja")
+    public RedirectView bajaAutor(@RequestParam Integer id){
+        as.bajaAutor(id);
+        return new RedirectView("/autorMenu");
+    }
+    
+    @GetMapping("/modificar")
+    public ModelAndView modificarAutor(){
+        return new ModelAndView("autorModificar");
+    }
+    
+    @PostMapping("/guardarModificacion")
+    public RedirectView guardarModificacionAutor(@RequestParam Integer id, @RequestParam String nombre, @RequestParam Boolean alta){
+        as.modificarAutor(id, nombre, alta);
+        return new RedirectView("/autorMenu");
+    }
+    
 }

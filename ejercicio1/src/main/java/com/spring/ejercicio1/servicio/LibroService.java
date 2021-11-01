@@ -25,7 +25,7 @@ public class LibroService {
     }
 
     @Transactional
-    public void modificarLibro(String id, Long isbn, String titulo, Integer anio,
+    public void modificarLibro(Integer id, Long isbn, String titulo, Integer anio,
             Integer ejemplares, Integer ejemplaresPrestados, Boolean alta, Autor autor, Editorial editorial) {
         Libro libro = repositorio.findById(id).get();
         libro.setIsbn(isbn);
@@ -41,17 +41,17 @@ public class LibroService {
     }
 
     @Transactional
-    private void bajaAlta(String id, Boolean alta) {
+    private void bajaAlta(Integer id, Boolean alta) {
         Libro libro = repositorio.getById(id);
         libro.setAlta(alta);
         repositorio.save(libro);
     }
 
-    public void bajaLibro(String id) {
+    public void baja(Integer id) {
         bajaAlta(id, false);
     }
 
-    public void alta(String id) {
+    public void alta(Integer id) {
         bajaAlta(id, true);
     }
 

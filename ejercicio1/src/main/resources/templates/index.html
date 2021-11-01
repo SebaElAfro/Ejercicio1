@@ -7,14 +7,11 @@
     <title>Librería</title>
 </head>
 <body>
-    <h1>Ingresar Autor</h1>
-    <form id="formulario" method="POST" th:action="@{/autor/ingresar}" th:object="${autor}">
-        <label>Nombre</label>
-        <input type="text" name="nombre">
-        <br>
-        <button type="submit">Registrar</button>
-
-    </form>
-
+    <h1>Librería</h1>
+    <ul>
+        <li><a>Libros</a></li>
+        <li><a th:href="@{/autorMenu}">Autores</a></li>
+        <li><a >Editoriales</a></li>
+    </ul>
 </body>
 </html>

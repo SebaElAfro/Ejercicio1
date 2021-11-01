@@ -17,7 +17,7 @@ public class Libro {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Integer id;
     private Long isbn;
     private String titulo;
     private Integer anio;
@@ -45,11 +45,11 @@ public class Libro {
         this.editorial = editorial;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

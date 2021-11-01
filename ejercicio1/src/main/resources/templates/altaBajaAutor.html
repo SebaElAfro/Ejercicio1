@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Librería</title>
+    </head>
+    <body>
+        <h1>Baja</h1>
+        <form id= "formularioBajaAutor" method="post" th:action="@{/autorMenu/baja}">
+            <label>Id</label>
+            <input type="number" name="id">
+            <button type="submit">Dar de baja</button>
+        </form>
+        <h2>Alta</h2>
+        <form id="formularioAltaAutor" method="post" th:action="@{/autorMenu/alta}">
+            <label>Id</label>
+            <input type="number" name="id">
+            <button type="submit">Dar de alta</button>
+        </form>
+    </body>
+</html>

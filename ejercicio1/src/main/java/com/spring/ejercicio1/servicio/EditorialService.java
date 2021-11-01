@@ -10,12 +10,14 @@ import com.spring.ejercicio1.entidades.Libro;
 import com.spring.ejercicio1.repositorios.EditorialRepositorio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author silvia
  */
+@Service
 public class EditorialService {
     @Autowired
     private EditorialRepositorio repositorio;
@@ -33,22 +35,22 @@ public class EditorialService {
         return repositorio.findAll();
     }
     
-    public void modificarEditorial(String id, String nombre,Boolean alta ){
+    public void modificarEditorial(Integer id, String nombre,Boolean alta ){
         repositorio.modificarEditorial(id, nombre, alta);
     }
     
-    public void altaEditorial(String id){
+    public void altaEditorial(Integer id){
         Editorial editorial = repositorio.findById(id).get();
         modificarEditorial(id, editorial.getNombre(), true);
     }
     
-    public void bajaEditorial(String id){
+    public void bajaEditorial(Integer id){
         Editorial editorial = repositorio.findById(id).get();
         modificarEditorial(id, editorial.getNombre(), false);
         List<Libro> libros = ls.obtenerLibros();
         for (Libro libro : libros) {
-            if (libro.getEditorial().getId().equals(id)) {
-                ls.bajaLibro(libro.getId());
+            if (libro.getEditorial().getId()==id) {
+                ls.baja(libro.getId());
             }
         }
     }

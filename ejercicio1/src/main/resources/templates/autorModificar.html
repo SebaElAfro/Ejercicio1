@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,9 +8,9 @@
 </head>
 <body>
     <h1>Modificar Autor</h1>
-    <form action="" method="post">
+    <form th:action="@{/autorMenu/guardarModificacion" method="post">
         <label>Id</label>
-        <input type="text" name="id">
+        <input type="number" name="id">
         <br>
         <label>Nombre</label>
         <input type="text" name="nombre">
